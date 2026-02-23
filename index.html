@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AgriCare – Smart Pesticide Recommendation Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+    <nav class="navbar">
+        <div class="logo">AgriCare</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#chat">Chat</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <h1>Smart Pesticide Guidance for Farmers</h1>
+    <p>Get instant recommendations for the right pesticide based on your crop and symptoms.</p>
+    <a href="#chat" class="btn">Start Chat</a>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features">
+    <h2>Our Features</h2>
+    <div class="feature-container">
+        <div class="card">
+            <h3>24/7 Support</h3>
+            <p>Available anytime to guide farmers instantly.</p>
+        </div>
+        <div class="card">
+            <h3>Multi-language</h3>
+            <p>Supports regional languages for easy communication.</p>
+        </div>
+        <div class="card">
+            <h3>Easy to Use</h3>
+            <p>Simple interface designed for rural users.</p>
+        </div>
+        <div class="card">
+            <h3>Safe Recommendations</h3>
+            <p>Provides dosage and safety precautions.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Chat UI Functional -->
+<section id="chat" class="chat-section">
+    <h2>Chat with AgriCare</h2>
+    <div class="chat-box">
+        <div id="chatMessages"></div>
+
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Enter crop and symptoms...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+    <h2>About AgriCare</h2>
+    <p>
+        Farmers often struggle to choose the correct pesticide for crop diseases.
+        AgriCare chatbot helps by analyzing crop type and symptoms to recommend
+        suitable pesticides with proper dosage and safety measures.
+        Our goal is to reduce crop loss and promote sustainable farming.
+    </p>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <form>
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 AgriCare | Smart Agriculture Solution</p>
+</footer>
+
+<script>
+
+document.getElementById("userInput")
+    .addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+});
+    function sendMessage() {
+        let input = document.getElementById("userInput");
+        let message = input.value.trim().toLowerCase();
+        let chatBox = document.getElementById("chatMessages");
+    
+        if (message === "") return;
+    
+        // Show user message
+        let userMessage = document.createElement("div");
+        userMessage.className = "message user";
+        userMessage.innerText = message;
+        chatBox.appendChild(userMessage);
+    
+        // Generate bot reply
+        let botReply = getBotResponse(message);
+    
+        let botMessage = document.createElement("div");
+        botMessage.className = "message bot";
+        botMessage.innerHTML = botReply;
+        chatBox.appendChild(botMessage);
+    
+        input.value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+    
+    function getBotResponse(message) {
+    
+        // Tomato Disease
+        if (message.includes("tomato") && message.includes("yellow")) {
+            return "Possible disease: Early Blight.<br>Recommended pesticide: Mancozeb.<br>Dosage: 2g per liter of water.<br>Precaution: Wear gloves and avoid spraying in strong wind.";
+        }
+    
+        // Rice Disease
+        else if (message.includes("rice") && message.includes("brown spots")) {
+            return "Possible disease: Brown Spot.<br>Recommended pesticide: Carbendazim.<br>Dosage: 1g per liter of water.<br>Precaution: Spray during dry weather.";
+        }
+    
+        // Cotton Pest
+        else if (message.includes("cotton") && message.includes("worms")) {
+            return "Possible pest: Bollworm.<br>Recommended pesticide: Spinosad.<br>Dosage: 0.5ml per liter of water.<br>Precaution: Avoid excessive spraying.";
+        }
+    
+        // Default reply
+        else {
+            return "Sorry, I could not identify the disease. Please mention crop name and symptoms clearly.";
+        }
+    }
+    </script>
+
+</body>
+</html>
