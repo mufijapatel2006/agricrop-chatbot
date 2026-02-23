@@ -20,6 +20,7 @@
             <li><a href="#chat">Chat</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+        <button id="themeToggle" class="theme-toggle">🌙</button>
     </nav>
 </header>
 
@@ -101,6 +102,19 @@ document.getElementById("userInput")
             sendMessage();
         }
 });
+
+    const toggleBtn = document.getElementById("themeToggle");
+
+toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+        toggleBtn.textContent = "☀️";
+    } else {
+        toggleBtn.textContent = "🌙";
+    }
+});
+    
     function sendMessage() {
         let input = document.getElementById("userInput");
         let message = input.value.trim().toLowerCase();
@@ -151,4 +165,5 @@ document.getElementById("userInput")
     </script>
 
 </body>
+
 </html>
